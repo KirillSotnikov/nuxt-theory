@@ -2,6 +2,10 @@
 
 > My posh Nuxt.js project
 
+# lesson 
+
+> part-2 -- 5.mp4
+
 ## Build Setup
 
 ``` bash
