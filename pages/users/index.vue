@@ -1,11 +1,11 @@
 <template>
   <section>
-    <h1>Users page</h1>
+    <h1>{{pageTitle}}</h1>
 
     <ul>
-      <li v-for="user of users" :key="user">
+      <li v-for="user of users" :key="user.id">
         <a href="#" @click.prevent="goTo(user)">
-          User {{user}}
+          {{user.name}} ({{user.email}})
         </a>
       </li>
     </ul>
@@ -14,14 +14,29 @@
 
 <script>
 export default {
+  // async fetch({store, error}) {
+  //   try{
+  //     if(store.getters['users/users'].length === 0) {
+  //       await store.dispatch('users/fetchUsers')
+  //     }
+  //   }
+  //   catch (err) {
+  //     throw error(err)
+  //   }
+  // },
   data(){
     return{
-      users: [1,2,3,4,5]
+      pageTitle: 'Users page'
     }
   },
   methods: {
     goTo(user) {
-      this.$router.push('/users/' + user)
+      this.$router.push('/users/' + user.id)
+    }
+  },
+  computed: {
+    users() {
+      return this.$store.getters['users/users']
     }
   }
 }
